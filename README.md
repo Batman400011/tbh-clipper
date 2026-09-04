@@ -40,6 +40,11 @@ You may be asked to close the window and double-click again once or twice.
 That's expected — Windows needs to refresh its PATH after installing
 something, and the script stops rather than continuing in a broken state.
 
+**An Ollama window will probably open** at some point, showing a list of
+models and possibly asking you to sign in. **Close it and ignore it.** The
+setup downloads the one model it needs by itself — you don't have to pick
+anything, and you don't need an Ollama account.
+
 ---
 
 ## What you need
