@@ -82,8 +82,9 @@ you want both.
 
 ## Speaker labels (optional)
 
-Setup offers to turn this on. You can skip it and add it later in the app
-under **Speaker ID**.
+Setup doesn't ask about this — it would mean stopping to create an account
+in a browser halfway through the install. Turn it on whenever you like from
+**Speaker ID** at the bottom of the app.
 
 It labels who is speaking, which also feeds the debate detection that looks
 for rapid back-and-forth. Without it everything else still works — you just
