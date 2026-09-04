@@ -1,0 +1,5 @@
+# This repo intentionally contains no application source.
+# Only README.md is tracked; releases carry the packaged zip.
+*
+!README.md
+!.gitignore
