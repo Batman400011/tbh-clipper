@@ -27,6 +27,16 @@ everything; every run after that just opens the app.
 
 ## Before you start
 
+**If nothing happens when you double-click, your PC is in S Mode.**
+No window, no error, nothing at all — that's the signature. New laptops
+ship this way often, and S Mode only allows apps from the Microsoft Store,
+refusing anything else without telling you.
+
+Switching out is free and takes a minute: **Settings → System → Activation
+→ "Switch to Windows 11 Home"** → **Go to the Store** → **Get**. It doesn't
+cost anything, doesn't touch your files, and doesn't change your licence.
+It is one-way — you can't switch back.
+
 **Windows will warn you.** Because the download isn't code-signed, you'll
 see *"Windows protected your PC"* with only a **Don't run** button. Click
 **More info**, then **Run anyway**. This is Windows being cautious about
