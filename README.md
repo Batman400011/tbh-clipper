@@ -46,9 +46,10 @@ any unsigned download, not a sign that something is wrong.
 installing Python, ffmpeg, Ollama and the AI models the tool runs on. That
 is genuinely the size of this software.
 
-You may be asked to close the window and double-click again once or twice.
-That's expected — Windows needs to refresh its PATH after installing
-something, and the script stops rather than continuing in a broken state.
+Setup normally runs straight through. Occasionally it asks you to close the
+window and double-click again — that happens when Windows hasn't made a
+just-installed program visible yet. It isn't an error, and it resumes where
+it left off rather than starting over.
 
 **An Ollama window will probably open** at some point, showing a list of
 models and possibly asking you to sign in. **Close it and ignore it.** The
