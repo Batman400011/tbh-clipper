@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Everything a TBH Clipper tester needs.">
+<title>Tester Start Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=Work+Sans:wght@400;500;600&display=swap">
+
+</head>
+<body>
+<style>
+  /* Single-theme on purpose: this matches the app itself, which is a
+     dark console. Every colour is painted explicitly so the page holds
+     on any host background. */
+  :root {
+    --ground: #0B0F0D;
+    --panel: #16211A;
+    --sunk: #060907;
+    --gold: #FFC107;
+    --phosphor: #4AFF8E;
+    --phosphor-dim: #3E9668;
+    --warn: #FFB347;
+    --alarm: #FF6B5A;
+    --text: #EDEAE2;
+    --dim: #8FA093;
+    --border: #35493D;
+    --border-soft: #26362C;
+
+    --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+    --body: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 15.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 780px; margin: 0 auto; padding: 40px 22px 80px; }
+
+  /* ---------- head ---------- */
+  .head { border-bottom: 1px solid var(--border-soft); padding-bottom: 24px; }
+  .kicker {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--phosphor-dim);
+  }
+  h1 {
+    font-family: var(--display); font-size: 46px; letter-spacing: 0.02em;
+    margin: 10px 0 0; line-height: 1.02; text-wrap: balance;
+  }
+  .lede { color: var(--dim); margin: 14px 0 0; max-width: 60ch; }
+  .meta {
+    font-family: var(--mono); font-size: 11.5px; color: var(--dim);
+    margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 20px;
+  }
+  .meta b { color: var(--phosphor); font-weight: 500; }
+
+  h2 {
+    font-family: var(--display); font-size: 28px; letter-spacing: 0.02em;
+    margin: 46px 0 4px; display: flex; align-items: center; gap: 14px;
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--border-soft); }
+  .note { color: var(--dim); font-size: 14px; margin: 0 0 18px; }
+
+  /* ---------- numbered steps: real sequence, so numbers earn it ---- */
+  .step { display: flex; gap: 18px; margin-bottom: 26px; }
+  .step-n {
+    font-family: var(--mono); font-size: 12px; color: var(--gold);
+    border: 1px solid var(--border); border-radius: 50%;
+    width: 30px; height: 30px; flex: 0 0 30px;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .step-b { flex: 1; min-width: 0; }
+  .step-t { font-weight: 600; font-size: 16.5px; margin-bottom: 5px; }
+  .step-d { color: var(--dim); }
+  .step-d p { margin: 0 0 9px; }
+  .step-d p:last-child { margin-bottom: 0; }
+
+  a { color: var(--phosphor); }
+  a:focus-visible, button:focus-visible, input:focus-visible,
+  textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--gold); outline-offset: 2px;
+  }
+
+  .btn {
+    display: inline-block; margin: 6px 8px 6px 0;
+    background: var(--gold); color: #1A1200;
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 11px 20px; border-radius: 6px; text-decoration: none;
+    border: none; cursor: pointer;
+  }
+  .btn.ghost {
+    background: transparent; color: var(--phosphor);
+    border: 1px solid var(--border);
+  }
+
+  /* ---------- callouts ---------- */
+  .box {
+    border: 1px solid var(--border); border-left: 3px solid var(--gold);
+    background: var(--panel); border-radius: 8px;
+    padding: 16px 18px; margin: 20px 0;
+  }
+  .box.stop { border-left-color: var(--alarm); }
+  .box.stop .lbl { color: var(--alarm); }
+  .box.good { border-left-color: var(--phosphor); }
+  .box.good .lbl { color: var(--phosphor); }
+  .lbl {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 7px;
+  }
+  .box p { margin: 0 0 9px; font-size: 14.5px; color: var(--dim); }
+  .box p:last-child { margin-bottom: 0; }
+  .box strong { color: var(--text); font-weight: 500; }
+
+  code {
+    font-family: var(--mono); font-size: 13px; color: var(--phosphor);
+    background: var(--sunk); padding: 1px 6px; border-radius: 4px;
+  }
+
+  .tbl-wrap { overflow-x: auto; margin: 14px 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; font-size: 14px; }
+  th {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--dim); text-align: left;
+    padding: 8px 12px 8px 0; border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+  td {
+    padding: 9px 12px 9px 0; border-bottom: 1px solid var(--border-soft);
+    color: var(--dim); font-variant-numeric: tabular-nums;
+  }
+  td:first-child { color: var(--text); }
+  tr:last-child td { border-bottom: none; }
+  .fast { color: var(--phosphor); font-family: var(--mono); font-size: 13px; }
+  .slow { color: var(--warn); font-family: var(--mono); font-size: 13px; }
+
+  ul { padding-left: 20px; margin: 8px 0 0; }
+  li { margin-bottom: 8px; color: var(--dim); }
+  li strong { color: var(--text); font-weight: 500; }
+
+  /* ---------- questionnaire ---------- */
+  .q { margin-bottom: 22px; }
+  .q-l { display: block; font-weight: 600; font-size: 15px; margin-bottom: 3px; }
+  .q-h { display: block; color: var(--dim); font-size: 13px; margin-bottom: 8px; }
+  input[type=text], textarea, select {
+    width: 100%; background: var(--sunk); color: var(--text);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px 12px; font-family: var(--body); font-size: 14.5px;
+  }
+  textarea { min-height: 80px; resize: vertical; }
+  .radios { display: flex; flex-wrap: wrap; gap: 8px; }
+  .radios label {
+    border: 1px solid var(--border); border-radius: 20px;
+    padding: 6px 14px; font-size: 13.5px; color: var(--dim); cursor: pointer;
+  }
+  .radios input { margin-right: 7px; accent-color: var(--gold); }
+  .radios label:has(input:checked) { border-color: var(--gold); color: var(--text); }
+
+  #outBox {
+    margin-top: 18px; background: var(--sunk); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px; display: none;
+  }
+  #outText {
+    width: 100%; min-height: 220px; background: transparent; color: var(--phosphor);
+    border: none; font-family: var(--mono); font-size: 12.5px; line-height: 1.5;
+    resize: vertical;
+  }
+  #copyMsg { font-family: var(--mono); font-size: 12px; color: var(--phosphor); margin-left: 10px; }
+
+  footer {
+    margin-top: 60px; padding-top: 22px; border-top: 1px solid var(--border-soft);
+    font-family: var(--mono); font-size: 11.5px; color: var(--dim);
+  }
+
+  @media (max-width: 620px) {
+    .wrap { padding: 28px 15px 60px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 23px; }
+    .step { gap: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <div class="head">
+    <div class="kicker">Tester briefing &middot; start here</div>
+    <h1>You're testing TBH Clipper</h1>
+    <p class="lede">
+      Point it at a long recording. It transcribes, works out who is talking
+      and where the subject changes, cuts clips, bleeps flagged words in the
+      audio, and writes titles, descriptions and thumbnails. All on your own
+      computer &mdash; nothing is uploaded.
+    </p>
+    <div class="meta">
+      <span>Version <b>1.4.9</b></span>
+      <span>Windows 10 / 11 only</span>
+      <span>Takes about <b>30 minutes</b> to set up</span>
+    </div>
+  </div>
+
+  <div class="box good">
+    <div class="lbl">You are not doing this alone</div>
+    <p>
+      There is a Discord for this round. It is the fastest way to get unstuck,
+      other testers hit the same things you will, and it is where you post the
+      clips you end up with.
+    </p>
+    <p><a class="btn" href="https://discord.gg/EFZqhCXqv" target="_blank" rel="noopener">Join the Discord</a></p>
+  </div>
+
+  <!-- ============ the hardware question, first, because it decides
+       everything about their experience ============ -->
+  <h2>Read this before you download</h2>
+  <p class="note">One thing determines whether this feels fast or broken.</p>
+
+  <div class="box stop">
+    <div class="lbl">Check your processor cores first</div>
+    <p>
+      The work is heavy arithmetic and it uses every core you have. We measured
+      the same 2-hour recording on two computers:
+    </p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Your computer</th><th>A 2-hour recording</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>8 or more cores</td><td class="fast">about 5 hours</td></tr>
+          <tr><td>4 cores (thin laptop)</td><td class="slow">about 34 hours</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Three times the cores gave <strong>seven times the speed</strong>. Nothing
+      is wrong with the slower machine &mdash; it is doing the same work
+      correctly, with less to do it with.
+    </p>
+    <p>
+      <strong>To check yours:</strong> press <code>Ctrl + Shift + Esc</code>,
+      click <strong>Performance</strong>, then <strong>CPU</strong>. Look for
+      "Cores". Tell us that number in the questionnaire either way &mdash;
+      knowing how it behaves on a small machine is one of the things we most
+      need from this round.
+    </p>
+  </div>
+
+  <!-- ============ steps ============ -->
+  <h2>Getting set up</h2>
+  <p class="note">Four steps. The third one is long but you can walk away from it.</p>
+
+  <div class="step">
+    <div class="step-n">1</div>
+    <div class="step-b">
+      <div class="step-t">Watch the walkthrough first</div>
+      <div class="step-d">
+        <p>
+          A full recording of the whole process on a brand-new laptop, start to
+          finish, with commentary. Nothing sped up &mdash; if you get stuck, you
+          can find the same moment in the video.
+        </p>
+        <p><a class="btn" href="#" id="videoLink">Watch the walkthrough</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-n">2</div>
+    <div class="step-b">
+      <div class="step-t">Download it</div>
+      <div class="step-d">
+        <p>
+          One zip file. Unzip it somewhere permanent &mdash; not inside the
+          Downloads folder, because it builds itself a home in whichever folder
+          you leave it in.
+        </p>
+        <p><a class="btn" href="#" id="downloadLink">Download TBH Clipper</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-n">3</div>
+    <div class="step-b">
+      <div class="step-t">Run "Start TBH Clipper.bat"</div>
+      <div class="step-d">
+        <p>
+          First time it installs everything it needs &mdash; roughly
+          <strong>30 to 60 minutes</strong> and several gigabytes. Leave it
+          running and go and do something else. Every launch after this one
+          takes seconds.
+        </p>
+        <p>
+          Windows will say <strong>"Windows protected your PC"</strong>. That
+          appears for anything not bought from a big publisher. Click
+          <strong>More info</strong>, then <strong>Run anyway</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-n">4</div>
+    <div class="step-b">
+      <div class="step-t">Point it at a recording</div>
+      <div class="step-d">
+        <p>
+          Put a video in your Downloads folder and it appears in the app. Pick
+          it, pick a style, and start. <strong>Start it before bed</strong>
+          &mdash; this is an overnight job on any machine.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ tips ============ -->
+  <h2>Things that catch people out</h2>
+  <p class="note">Every one of these has already happened to someone. None are your fault.</p>
+
+  <ul>
+    <li>
+      <strong>Windows S Mode blocks it silently.</strong> If double-clicking
+      the file does absolutely nothing &mdash; no error, no window &mdash;
+      that is why. Settings &rarr; System &rarr; Activation &rarr; switch out
+      of S Mode. It is free and one-way.
+    </li>
+    <li>
+      <strong>Don't let the computer sleep.</strong> A run does not count as
+      activity, so a machine set to sleep after 30 minutes will stop overnight
+      and throw away the hours it had done. Run
+      <code>Check Run Speed.bat</code> &mdash; it offers to fix this for you.
+    </li>
+    <li>
+      <strong>An Ollama window may open</strong> offering a list of models and
+      a sign-in. Close it and ignore it. You do not need an account, and the
+      app downloads what it needs by itself.
+    </li>
+    <li>
+      <strong>"Nothing found yet" is not a failure.</strong> Findings only
+      appear when a 20-minute chunk finishes, which can take an hour. The
+      screen tells you what it is waiting for.
+    </li>
+    <li>
+      <strong>Close streaming software before a run.</strong> On a machine with
+      8&nbsp;GB of memory this is worth real time, and there is no setting for
+      it.
+    </li>
+    <li>
+      <strong>Plug the charger in.</strong> On battery, Windows caps the
+      processor hard whatever the settings say &mdash; worth more than every
+      other tweak combined.
+    </li>
+  </ul>
+
+  <!-- ============ when it breaks ============ -->
+  <h2>If something goes wrong</h2>
+
+  <div class="box good">
+    <div class="lbl">Don't delete and re-download &mdash; run a checker instead</div>
+    <p>
+      Three files sit in the app folder. Double-click &mdash; nothing to type.
+    </p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>File</th><th>Use it when</th></tr></thead>
+        <tbody>
+          <tr><td><code>Check My System.bat</code></td><td>Anything at all. Start here &mdash; it reports what is missing and fixes the most common cause on its own.</td></tr>
+          <tr><td><code>Fix Missing Model.bat</code></td><td>The error mentions a missing text model.</td></tr>
+          <tr><td><code>Check Run Speed.bat</code></td><td>It is running but seems far too slow, or you want to tune the machine.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Each saves a small text file to your Desktop. <strong>That file is the
+      single most useful thing you can send us.</strong>
+    </p>
+    <p>
+      Re-downloading the app rebuilds the parts that already work and cannot
+      fix the two things that actually fail. Runs also resume where they
+      stopped, so nothing is lost by fixing a problem and starting again.
+    </p>
+    <p>
+      <strong>Still stuck?</strong> Post in the Discord and drag that Desktop
+      file straight into the message. Someone has probably hit it already.
+    </p>
+    <p><a class="btn ghost" href="https://discord.gg/EFZqhCXqv" target="_blank" rel="noopener">Ask in the Discord</a></p>
+  </div>
+
+  <!-- ============ questionnaire ============ -->
+  <h2>Tell us how it went</h2>
+  <p class="note">
+    Fill this in after your first run, hit <strong>Build my answers</strong>,
+    copy it, and paste it into the Discord. Short answers are fine &mdash; the
+    hardware numbers at the top matter most.
+  </p>
+
+  <form id="qForm" onsubmit="return false;">
+    <div class="q">
+      <label class="q-l" for="f_name">Your name</label>
+      <input type="text" id="f_name" autocomplete="name">
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_cores">How many processor cores?</label>
+      <span class="q-h">Ctrl + Shift + Esc &rarr; Performance &rarr; CPU &rarr; "Cores"</span>
+      <input type="text" id="f_cores" inputmode="numeric">
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_ram">How much memory (RAM)?</label>
+      <span class="q-h">Same screen. Usually 8 GB or 16 GB.</span>
+      <input type="text" id="f_ram">
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_gpu">Do you have a graphics card?</label>
+      <span class="q-h">Same screen, look for "GPU". NVIDIA, AMD, Intel, or not sure.</span>
+      <input type="text" id="f_gpu">
+    </div>
+
+    <div class="q">
+      <label class="q-l">Did the install finish without you having to fix anything?</label>
+      <div class="radios">
+        <label><input type="radio" name="install" value="Yes, straight through">Yes, straight through</label>
+        <label><input type="radio" name="install" value="Yes, but I got stuck first">Got stuck, then worked</label>
+        <label><input type="radio" name="install" value="No, never finished">Never finished</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_stuck">If you got stuck, what happened?</label>
+      <span class="q-h">What was on screen, and what you did about it.</span>
+      <textarea id="f_stuck"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_len">How long was your recording, and how long did the run take?</label>
+      <span class="q-h">For example: "2 hour stream, took about 9 hours".</span>
+      <input type="text" id="f_len">
+    </div>
+
+    <div class="q">
+      <label class="q-l">Were the clips any good?</label>
+      <div class="radios">
+        <label><input type="radio" name="clips" value="I would post these">I would post these</label>
+        <label><input type="radio" name="clips" value="Close, needs edits">Close, needs edits</label>
+        <label><input type="radio" name="clips" value="Not usable">Not usable</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_clips">What was right or wrong about them?</label>
+      <span class="q-h">Wrong moments? Cut off? Titles miss the point? Bleeping wrong?</span>
+      <textarea id="f_clips"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_confusing">What confused you?</label>
+      <span class="q-h">Anything you had to guess at, or a message you did not understand.</span>
+      <textarea id="f_confusing"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-l">Would you use this on your own channel?</label>
+      <div class="radios">
+        <label><input type="radio" name="use" value="Yes">Yes</label>
+        <label><input type="radio" name="use" value="Maybe">Maybe</label>
+        <label><input type="radio" name="use" value="No">No</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_pay">Honestly &mdash; what would you pay a month for it?</label>
+      <span class="q-h">A real number is more useful than a kind one. "Nothing" is a valid answer.</span>
+      <input type="text" id="f_pay">
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_anything">Anything else</label>
+      <textarea id="f_anything"></textarea>
+    </div>
+
+    <button class="btn" id="btnBuild" type="button">Build my answers</button>
+    <button class="btn ghost" id="btnCopy" type="button" style="display:none">Copy</button>
+    <a class="btn ghost" id="btnPost" href="https://discord.gg/EFZqhCXqv" target="_blank"
+       rel="noopener" style="display:none">Post it in Discord</a>
+    <span id="copyMsg"></span>
+
+    <div id="outBox">
+      <textarea id="outText" readonly aria-label="Your answers, ready to send"></textarea>
+    </div>
+  </form>
+
+  <footer>
+    TBH Clipper 1.4.9 &middot; tester round 1 &middot; everything runs on your
+    own machine, nothing is uploaded
+  </footer>
+</div>
+
+<script>
+(function () {
+  // Placeholders so the preview shows structure; the real links are
+  // filled in before this goes out.
+  var VIDEO_URL = "https://github.com/Batman400011/tbh-clipper/releases/download/v1.4.9/TBH.Clipper.-.full.walkthrough.mp4";
+  var DOWNLOAD_URL = "https://github.com/Batman400011/tbh-clipper/releases/download/v1.4.9/TBH_Clipper.zip";
+
+  document.getElementById('videoLink').href = VIDEO_URL;
+  document.getElementById('downloadLink').href = DOWNLOAD_URL;
+
+  function val(id) { return (document.getElementById(id).value || '').trim(); }
+  function radio(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : '';
+  }
+
+  function build() {
+    var L = [];
+    L.push('TBH CLIPPER - TESTER REPORT');
+    L.push('===========================');
+    L.push('Name: ' + (val('f_name') || '(not given)'));
+    L.push('');
+    L.push('MACHINE');
+    L.push('  Cores  : ' + val('f_cores'));
+    L.push('  Memory : ' + val('f_ram'));
+    L.push('  Graphics card : ' + val('f_gpu'));
+    L.push('');
+    L.push('INSTALL');
+    L.push('  Finished cleanly: ' + radio('install'));
+    if (val('f_stuck')) { L.push('  What happened: ' + val('f_stuck')); }
+    L.push('');
+    L.push('THE RUN');
+    L.push('  Length and time taken: ' + val('f_len'));
+    L.push('');
+    L.push('THE CLIPS');
+    L.push('  Verdict: ' + radio('clips'));
+    if (val('f_clips')) { L.push('  Detail: ' + val('f_clips')); }
+    L.push('');
+    L.push('CONFUSING BITS');
+    L.push('  ' + (val('f_confusing') || '(none)'));
+    L.push('');
+    L.push('WOULD YOU USE IT');
+    L.push('  ' + radio('use'));
+    L.push('  Would pay per month: ' + (val('f_pay') || '(not given)'));
+    L.push('');
+    L.push('ANYTHING ELSE');
+    L.push('  ' + (val('f_anything') || '(nothing)'));
+    return L.join('\n');
+  }
+
+  var out = document.getElementById('outText');
+  var box = document.getElementById('outBox');
+  var msg = document.getElementById('copyMsg');
+
+  document.getElementById('btnBuild').addEventListener('click', function () {
+    out.value = build();
+    box.style.display = 'block';
+    document.getElementById('btnCopy').style.display = 'inline-block';
+    document.getElementById('btnPost').style.display = 'inline-block';
+    msg.textContent = '';
+    box.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+  });
+
+  document.getElementById('btnCopy').addEventListener('click', function () {
+    // execCommand is the fallback because clipboard.writeText needs a
+    // secure context and permission that some browsers withhold here.
+    var ok = false;
+    try {
+      out.select();
+      ok = document.execCommand('copy');
+    } catch (e) { ok = false; }
+    if (navigator.clipboard && !ok) {
+      navigator.clipboard.writeText(out.value).then(function () {
+        msg.textContent = 'copied';
+      }, function () {
+        msg.textContent = 'select the text above and copy it';
+      });
+      return;
+    }
+    msg.textContent = ok ? 'copied' : 'select the text above and copy it';
+  });
+
+})();
+</script>
+
+</body>
+</html>
