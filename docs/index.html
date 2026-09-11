@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Everything a TBH Clipper tester needs.">
 <title>Tester Start Here</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -206,7 +205,7 @@
       computer &mdash; nothing is uploaded.
     </p>
     <div class="meta">
-      <span>Version <b>1.4.9</b></span>
+      <span>Version <b>1.5.0</b></span>
       <span>Windows 10 / 11 only</span>
       <span>Takes about <b>30 minutes</b> to set up</span>
     </div>
@@ -287,7 +286,32 @@
           Downloads folder, because it builds itself a home in whichever folder
           you leave it in.
         </p>
-        <p><a class="btn" href="#" id="downloadLink">Download TBH Clipper</a></p>
+        <p>
+          <a class="btn" href="#" id="downloadLink">Download for Windows</a>
+          <a class="btn ghost" href="https://github.com/Batman400011/tbh-clipper/releases/download/v1.5.1/TBH_Clipper_Mac.zip">Download for Mac</a>
+        </p>
+        <div class="box stop" style="margin-top:14px">
+          <div class="lbl">Mac &mdash; read before you download</div>
+          <p>
+            <strong>Apple Silicon only (M1, M2, M3, M4), on macOS 14 or newer.</strong>
+            The AI library this runs on no longer ships builds for Intel Macs, so
+            an Intel Mac cannot install it at all &mdash; not slowly, not at all.
+            Check: Apple menu &rarr; About This Mac &rarr; "Chip".
+          </p>
+          <p>
+            Unzip, then double-click <code>Start TBH Clipper.command</code>. If
+            macOS says it "cannot be opened because it is from an unidentified
+            developer": <strong>right-click it, choose Open, then Open again.</strong>
+            One-time thing.
+          </p>
+          <p>
+            The Mac build is <strong>brand new and untested on a real Mac</strong>
+            &mdash; we do not have one. The parts that make clips are the same code
+            that already produced clips for one Mac tester; what is unproven is the
+            installer. If it stops, a photo of the Terminal window is exactly what
+            we need.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -327,6 +351,22 @@
   </div>
 
   <!-- ============ tips ============ -->
+  <div class="box good">
+    <div class="lbl">New in 1.5.0 &mdash; no account needed any more</div>
+    <p>
+      Earlier versions asked you to make a Hugging Face account and create a
+      token before speaker names would work. <strong>That step is gone.</strong>
+      Speaker detection is now built in, needs no account and no internet, and
+      runs on its own.
+    </p>
+    <p>
+      There is also a new question when you start a run &mdash;
+      <strong>panel or interview</strong>. Tell it how many people talk in your
+      recording and it tunes itself. Two people is the easier case and it does a
+      noticeably better job when it knows.
+    </p>
+  </div>
+
   <h2>Things that catch people out</h2>
   <p class="note">Every one of these has already happened to someone. None are your fault.</p>
 
@@ -426,6 +466,21 @@
     </div>
 
     <div class="q">
+      <label class="q-l">Which did you pick &mdash; panel or interview?</label>
+      <div class="radios">
+        <label><input type="radio" name="mode" value="Panel">Panel (3+ people)</label>
+        <label><input type="radio" name="mode" value="Interview">Interview (1-2)</label>
+        <label><input type="radio" name="mode" value="Both">Tried both</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-l" for="f_speakers">Did it get the speakers right?</label>
+      <span class="q-h">Roughly how many people are in your recording, and did the clips seem to know who was who?</span>
+      <textarea id="f_speakers"></textarea>
+    </div>
+
+    <div class="q">
       <label class="q-l" for="f_gpu">Do you have a graphics card?</label>
       <span class="q-h">Same screen, look for "GPU". NVIDIA, AMD, Intel, or not sure.</span>
       <input type="text" id="f_gpu">
@@ -505,7 +560,7 @@
   </form>
 
   <footer>
-    TBH Clipper 1.4.9 &middot; tester round 1 &middot; everything runs on your
+    TBH Clipper 1.5.0 &middot; tester round 1 &middot; everything runs on your
     own machine, nothing is uploaded
   </footer>
 </div>
@@ -514,8 +569,8 @@
 (function () {
   // Placeholders so the preview shows structure; the real links are
   // filled in before this goes out.
-  var VIDEO_URL = "https://github.com/Batman400011/tbh-clipper/releases/download/v1.4.9/TBH.Clipper.-.full.walkthrough.mp4";
-  var DOWNLOAD_URL = "https://github.com/Batman400011/tbh-clipper/releases/download/v1.4.9/TBH_Clipper.zip";
+  var VIDEO_URL = "https://github.com/Batman400011/tbh-clipper/releases/download/v1.5.0/TBH.Clipper.-.full.walkthrough.mp4";
+  var DOWNLOAD_URL = "https://github.com/Batman400011/tbh-clipper/releases/download/v1.5.1/TBH_Clipper.zip";
 
   document.getElementById('videoLink').href = VIDEO_URL;
   document.getElementById('downloadLink').href = DOWNLOAD_URL;
@@ -543,6 +598,10 @@
     L.push('');
     L.push('THE RUN');
     L.push('  Length and time taken: ' + val('f_len'));
+    L.push('');
+    L.push('MODE');
+    L.push('  Picked: ' + radio('mode'));
+    if (val('f_speakers')) { L.push('  Speakers: ' + val('f_speakers')); }
     L.push('');
     L.push('THE CLIPS');
     L.push('  Verdict: ' + radio('clips'));
