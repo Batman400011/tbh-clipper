@@ -205,20 +205,77 @@
       computer &mdash; nothing is uploaded.
     </p>
     <div class="meta">
-      <span>Version <b>1.5.2</b></span>
+      <span>Version <b>1.5.7</b></span>
       <span>Windows 10 / 11 only</span>
       <span>Takes about <b>30 minutes</b> to set up</span>
     </div>
   </div>
 
-  <div class="box good">
-    <div class="lbl">You are not doing this alone</div>
-    <p>
-      There is a Discord for this round. It is the fastest way to get unstuck,
-      other testers hit the same things you will, and it is where you post the
-      clips you end up with.
+  <!-- What it does, before anything is asked of them. -->
+  <div style="margin: 30px 0 8px;">
+    <video controls preload="metadata" playsinline
+           style="width:100%; display:block; border:1px solid var(--border);
+                  border-radius:10px; background:#060907;"
+           poster="">
+      <source src="what-it-does.mp4" type="video/mp4">
+      Your browser will not play this. <a href="what-it-does.mp4">Download the video</a>.
+    </video>
+    <p class="note" style="margin-top:10px">
+      <strong>1 minute 54 seconds.</strong> Everything in it is real output
+      &mdash; the clips, the thumbnails, the titles, the speaker counts.
+      Nothing is a mock-up.
     </p>
-    <p><a class="btn" href="https://discord.gg/EFZqhCXqv" target="_blank" rel="noopener">Join the Discord</a></p>
+  </div>
+
+  <div class="box good">
+    <div class="lbl">Before anything else &mdash; join the Discord</div>
+    <p>
+      <strong>This is the one thing that makes testing work.</strong> Everyone
+      testing this is in one room. When something breaks, a photo of your
+      screen posted there gets it fixed in hours &mdash; usually the same day,
+      often within the hour. Without it, you get stuck, you put it down, and
+      nobody ever finds out why.
+    </p>
+    <p>
+      It is also where the clips go. Post what comes out, good or bad. That is
+      how we work out what this thing is actually good at.
+    </p>
+    <p style="margin-top:14px">
+      <a class="btn" href="https://discord.gg/EFZqhCXqv" target="_blank" rel="noopener">Join the Discord &rarr;</a>
+    </p>
+    <p class="note" style="margin-top:10px; font-size:13px;">
+      No question is too small for it. That is what it is there for.
+    </p>
+  </div>
+
+  <!-- People who already have an older copy need a route, not a re-install. -->
+  <div class="box">
+    <div class="lbl">Already have TBH Clipper? Don't re-install</div>
+    <p>
+      Updating keeps your settings, your channel styles and your bleep word
+      list. Pick whichever line describes you:
+    </p>
+    <p>
+      <strong>1. You see an "Update" button</strong> at the bottom of the app
+      &mdash; press it, then close and reopen. That is the whole thing. (Every
+      version from 1.5.1 onwards has it.)
+    </p>
+    <p>
+      <strong>2. You don't see one</strong> &mdash; you're on an older build.
+      Download the two files below, drop them both into your TBH Clipper
+      folder, and double-click <code>Update TBH Clipper.bat</code>. It fetches
+      the newest version and installs it over the top. You only ever need to do
+      this once; after that the button does it.
+    </p>
+    <p style="margin-top:12px">
+      <a class="btn ghost" href="https://github.com/Batman400011/tbh-clipper/releases/latest/download/Update.TBH.Clipper.bat">Update TBH Clipper.bat</a>
+      <a class="btn ghost" href="https://github.com/Batman400011/tbh-clipper/releases/latest/download/update_tbh.ps1">update_tbh.ps1</a>
+    </p>
+    <p class="note" style="margin-top:12px; font-size:13px;">
+      Both files are needed &mdash; the .bat is what you click, the .ps1 is
+      what does the work. The first start after any update takes a few extra
+      minutes while it refreshes itself. That is normal and happens once.
+    </p>
   </div>
 
   <!-- ============ the hardware question, first, because it decides
@@ -264,14 +321,22 @@
   <div class="step">
     <div class="step-n">1</div>
     <div class="step-b">
-      <div class="step-t">Watch the walkthrough first</div>
+      <div class="step-t">Watch the setup walkthrough</div>
       <div class="step-d">
         <p>
-          A full recording of the whole process on a brand-new laptop, start to
-          finish, with commentary. Nothing sped up &mdash; if you get stuck, you
-          can find the same moment in the video.
+          Different film from the short one at the top. This is the whole
+          install on a brand-new laptop, start to finish, with commentary and
+          nothing sped up &mdash; so if you get stuck, you can find the same
+          moment in the video and see what it is meant to look like.
         </p>
-        <p><a class="btn" href="#" id="videoLink">Watch the walkthrough</a></p>
+        <p>
+          <a class="btn" href="#" id="videoLink">Watch the walkthrough</a>
+        </p>
+        <p class="note" style="margin-top:8px; font-size:13px;">
+          It was recorded on 1.5.0 and still shows a HuggingFace step near the
+          start. <strong>Skip that part</strong> &mdash; you do not need an
+          account any more. Everything else still matches.
+        </p>
       </div>
     </div>
   </div>
@@ -440,6 +505,24 @@
   </div>
 
   <!-- ============ questionnaire ============ -->
+  <h2>Stay in the room</h2>
+  <div class="box good">
+    <div class="lbl">The Discord is the test, really</div>
+    <p>
+      The software is the easy half. The half that decides whether this is any
+      good is a handful of people using it on their own recordings and saying
+      what happened &mdash; which clip was wrong, which title was better than
+      they expected, what took nine hours that should have taken three.
+    </p>
+    <p>
+      That conversation happens in one place. If you only do one thing from
+      this page, make it this one.
+    </p>
+    <p style="margin-top:14px">
+      <a class="btn" href="https://discord.gg/EFZqhCXqv" target="_blank" rel="noopener">Join the Discord &rarr;</a>
+    </p>
+  </div>
+
   <h2>Tell us how it went</h2>
   <p class="note">
     Fill this in after your first run, hit <strong>Build my answers</strong>,
@@ -560,7 +643,7 @@
   </form>
 
   <footer>
-    TBH Clipper 1.5.2 &middot; tester round 1 &middot; everything runs on your
+    TBH Clipper 1.5.7 &middot; tester round 1 &middot; everything runs on your
     own machine, nothing is uploaded
   </footer>
 </div>
